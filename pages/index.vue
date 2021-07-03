@@ -20,7 +20,7 @@ export default {
   data() {
     return {
       text: "hello",
-      ws: new WebSocket("ws://localhost:8000/ws"),
+      ws: new WebSocket(this.$url.ws),
       recieved: "",
       isConnected: false,
     };
@@ -44,7 +44,7 @@ export default {
   },
   methods: {
     submit() {
-      const url = "http://localhost:8000";
+      const url = this.$url.http;
       const data = { userid: this.$store.state.user.userid, text: this.text };
       fetch(url, {
         method: "POST", // *GET, POST, PUT, DELETE, etc.
