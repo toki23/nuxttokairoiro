@@ -30,7 +30,6 @@ export default {
   plugins: [
     '~/plugins/url',
   ],
-  target: 'static',
   router: {
     base: '/https://github.com/toki23/nuxttokairoiro/'
   },
