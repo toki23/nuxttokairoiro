@@ -21,7 +21,9 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
-
+  generate: { 
+    dir: 'public' 
+  } ,
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
   ],
@@ -30,9 +32,9 @@ export default {
   plugins: [
     '~/plugins/url',
   ],
-  router: {
-    base: '/https://github.com/toki23/nuxttokairoiro/'
-  },
+  // router: {
+  //   base: '/'
+  // },
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,

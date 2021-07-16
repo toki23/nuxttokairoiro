@@ -7,8 +7,12 @@
       <p>あなたのユーザーidは　{{ this.$store.state.user.userid }}</p>
       <p>以下のデータが送られてきました　：{{ this.recieved }}</p>
       <input type="button" v-on:click="this.socket" value="websocketに通信" />
-
       <input type="text" v-model="text" />
+
+      <p>送信しよう</p>
+      <p>
+        <input type="button" v-on:click="this.submit" value="POST通信するよ" />
+      </p>
     </div>
   </div>
 </template>
@@ -36,7 +40,6 @@ export default {
       this.recieved = e.data;
     });
     this.$store.subscribe((mutation, state) => {
-
       if (mutation.type === "user/setuserid") {
         console.log(mutation.payload);
       }
@@ -57,11 +60,14 @@ export default {
         },
         referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
         body: JSON.stringify(data), // 本文のデータ型は "Content-Type" ヘッダーと一致する必要があります
-      });
+      })
+        .then((response) => response.json())
+        .then((data) => console.log(data));
     },
     socket() {
       if (this.isConnected) {
         this.ws.send(this.text);
+        
       } else {
         toastr.warning("まだWebSocketに接続できてないよ");
       }
